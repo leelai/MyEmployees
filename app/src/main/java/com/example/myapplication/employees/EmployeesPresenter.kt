@@ -12,12 +12,15 @@ class EmployeesPresenter(private val employeesRepository: EmployeeRepository, va
     }
 
     override fun loadEmployees() {
+        employeesView.setLoadingIndicator(true)
         employeesRepository.getEmployees(object : EmployeeDataSource.LoadEmployeesCallback {
             override fun onEmployeesLoaded(employees: List<Employee>) {
+                employeesView.setLoadingIndicator(false)
                 employeesView.showEmployees(employees)
             }
 
             override fun onDataNotAvailable() {
+                employeesView.setLoadingIndicator(false)
                 employeesView.showNoEmployees()
             }
         })

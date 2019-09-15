@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import com.example.myapplication.R
 import com.example.myapplication.data.source.Employee
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.google.android.material.snackbar.Snackbar
+
 
 /**
  * A fragment representing a list of Items.
@@ -20,6 +22,8 @@ class EmployeesFragment : Fragment(), EmployeesContract.View {
 
     override lateinit var presenter: EmployeesContract.Presenter
 
+    private var snackbar: Snackbar? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,7 +32,14 @@ class EmployeesFragment : Fragment(), EmployeesContract.View {
     }
 
     override fun setLoadingIndicator(active: Boolean) {
+        if (snackbar != null && snackbar!!.isShownOrQueued) {
+            snackbar!!.dismiss()
+        }
 
+        if (active) {
+            snackbar = Snackbar.make(view!!, R.string.loading, Snackbar.LENGTH_SHORT)
+            snackbar!!.show()
+        }
     }
 
     override fun showEmployees(employees: List<Employee>) {
@@ -43,10 +54,11 @@ class EmployeesFragment : Fragment(), EmployeesContract.View {
             )
             addItemDecoration(dividerItemDecoration)
         }
+        view!!.visibility = View.VISIBLE
     }
 
     override fun showNoEmployees() {
-
+        view!!.visibility = View.GONE
     }
 
     override fun onResume() {
