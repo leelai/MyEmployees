@@ -24,7 +24,7 @@ class EmployeeRepositoryTest {
             }
         })
 
-        latch.await(2000, TimeUnit.MILLISECONDS);
+        latch.await(2000, TimeUnit.MILLISECONDS)
         assertEquals(0, latch.count)
     }
 }

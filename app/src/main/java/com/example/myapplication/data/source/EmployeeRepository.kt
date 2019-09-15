@@ -6,7 +6,7 @@ import retrofit2.Response
 
 class EmployeeRepository private constructor(): EmployeeDataSource {
 
-    val service = EmployeeApi.create()
+    private val service = EmployeeApi.create()
 
     override fun getEmployees(callback: EmployeeDataSource.LoadEmployeesCallback) {
 

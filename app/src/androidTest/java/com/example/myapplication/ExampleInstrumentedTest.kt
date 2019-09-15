@@ -1,22 +1,13 @@
 package com.example.myapplication
 
-import android.util.Log
 import androidx.test.platform.app.InstrumentationRegistry
-import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.myapplication.data.source.Employee
 import com.example.myapplication.data.source.EmployeeApi
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.greaterThan
 
 import org.junit.Test
-import org.junit.runner.RunWith
 
 import org.junit.Assert.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 
 /**
